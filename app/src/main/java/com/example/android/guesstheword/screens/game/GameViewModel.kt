@@ -1,6 +1,7 @@
 package com.example.android.guesstheword.screens.game
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -12,14 +13,25 @@ class GameViewModel : ViewModel() {
 
     // The current word
     // var word = ""
-    var word = MutableLiveData<String>()
+    private val _word = MutableLiveData<String>()
+
+    // External
+    val word: LiveData<String>
+        get() = _word
 
     // The current score
     // var score = 0
     // MutableLiveData = Variable whose value can be changed,
     // it is also a generic class; so we need to define the DATA Type
     // Its default value will be always null
-    var score = MutableLiveData<Int>()
+
+    // Dynamic - For internal usage
+    private val _score = MutableLiveData<Int>()
+
+
+    // Constant - For external usage
+    val score: LiveData<Int>
+        get() = _score
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
@@ -30,7 +42,7 @@ class GameViewModel : ViewModel() {
         resetList()
         nextWord()
 
-        score.value = 0 // Default value during initalization
+        _score.value = 0 // Default value during initalization
     }
 
     override fun onCleared() {
@@ -77,7 +89,7 @@ class GameViewModel : ViewModel() {
         if (wordList.isEmpty()) {
             // gameFinished()
         } else {
-            word.value = wordList.removeAt(0)
+            _word.value = wordList.removeAt(0)
         }
     }
 
@@ -85,13 +97,13 @@ class GameViewModel : ViewModel() {
     fun onSkip() {
         // score--
         // ()? = null check
-        score.value = (score.value)?.minus(1) // score--
+        _score.value = (score.value)?.minus(1) // score--
         nextWord()
     }
 
     fun onCorrect() {
         // score++
-        score.value = (score.value)?.plus(1) // score++
+        _score.value = (score.value)?.plus(1) // score++
         nextWord()
     }
 
