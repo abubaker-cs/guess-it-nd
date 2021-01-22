@@ -80,7 +80,7 @@ class GameFragment : Fragment() {
 //
 //        })
 
-        // Observer
+        // Observer.
 //        viewModel.word.observe(viewLifecycleOwner, { newWord ->
 //            // binding.wordText.text = viewModel.word
 //            binding.wordText.text = newWord
