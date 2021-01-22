@@ -10,8 +10,4 @@ class ScoreViewModel(finalScore: Int) : ViewModel() {
         Log.i("ScoreViewModel", "Final score is $finalScore")
     }
 
-    //
-
-
-
 }

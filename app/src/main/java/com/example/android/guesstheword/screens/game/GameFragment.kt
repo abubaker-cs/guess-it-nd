@@ -57,33 +57,34 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called viewModelProviders.of!")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        binding.gameViewModel = viewModel
+
+        // Specify the current activity as the lifecycle owner of the binding. This is used so that
+        // the binding can observe LiveData updates
+        binding.setLifecycleOwner(this)
 
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-            // updateScoreText()
-            // updateWordText()
-        }
-
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-            // updateScoreText()
-            // updateWordText()
-        }
+//        binding.correctButton.setOnClickListener {
+//            viewModel.onCorrect()
+//        }
+//
+//        binding.skipButton.setOnClickListener {
+//            viewModel.onSkip()
+//        }
 
         // Setting Observer for LiveData
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            // PREVIOUSLY = updateScoreText()
-            // binding.scoreText.text = viewModel.score.toString()
-            binding.scoreText.text = newScore.toString()
-
-        })
+//        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+//            // PREVIOUSLY = updateScoreText()
+//            // binding.scoreText.text = viewModel.score.toString()
+//            binding.scoreText.text = newScore.toString()
+//
+//        })
 
         // Observer
-        viewModel.word.observe(viewLifecycleOwner, { newWord ->
-            // binding.wordText.text = viewModel.word
-            binding.wordText.text = newWord
-        })
+//        viewModel.word.observe(viewLifecycleOwner, { newWord ->
+//            // binding.wordText.text = viewModel.word
+//            binding.wordText.text = newWord
+//        })
 
         // Timer
         // Setting Observer for LiveData
