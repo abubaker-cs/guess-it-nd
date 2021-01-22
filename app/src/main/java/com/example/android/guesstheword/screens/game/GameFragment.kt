@@ -88,9 +88,9 @@ class GameFragment : Fragment() {
 
         // Timer
         // Setting Observer for LiveData
-        viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
-            binding.timerText.text = DateUtils.formatElapsedTime(newTime)
-        })
+        // viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
+        //     binding.timerText.text = DateUtils.formatElapsedTime(newTime)
+        // })
 
 
         // Game Over
